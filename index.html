@@ -58,6 +58,31 @@
   }
 </style>
 </head>
+
+<script>
+(function () {
+  var el = document.getElementById("last-updated");
+  var user = "andreacortellari";
+  var repo = "andreacortellari.github.io";
+
+  fetch("https://api.github.com/repos/" + user + "/" + repo + "/commits?per_page=1")
+    .then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then(function (commits) {
+      var d = new Date(commits[0].commit.committer.date);
+      el.textContent = d.toLocaleDateString("en-GB", {
+        year: "numeric", month: "long", day: "numeric"
+      });
+      el.setAttribute("datetime", d.toISOString());
+    })
+    .catch(function () {
+      el.parentNode.hidden = true; // hide the line if the lookup fails
+    });
+})();
+</script>
+
 <body>
 <main>
 
@@ -69,7 +94,6 @@
       <li>Dutch (basic)</li>
     </ul>
   </header>
-  <footer>Last updated [month year]</footer>
 
   <section id="contact">
     <h2>Get in touch</h2>
@@ -82,3 +106,4 @@
 </main>
 </body>
 </html>
+<footer>Last updated <time id="last-updated">recently</time></footer>
