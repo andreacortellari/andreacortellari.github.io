@@ -4,7 +4,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 FEED_URL = "https://it.globalvoices.org/author/andrea-cortellari/feed/"
-LIMIT = 6
+LIMIT = 3
 CONTENT = "{http://purl.org/rss/1.0/modules/content/}encoded"
 
 req = urllib.request.Request(FEED_URL, headers={"User-Agent": "portfolio-feed-bot"})
