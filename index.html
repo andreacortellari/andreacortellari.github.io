@@ -43,46 +43,24 @@
   p { margin: 0 0 1rem; max-width: 38rem; }
   a { color: var(--accent); text-underline-offset: 3px; }
   a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-  .lead { font-size: 1.2rem; color: var(--muted); }
   .langs { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 1.5rem 0 0; list-style: none; }
   .langs li { background: var(--chip); padding: .3rem .8rem; border-radius: 999px; font-size: .95rem; }
-  .group-title { margin: 2rem 0 .75rem; font-size: 1.1rem; font-weight: 600; }
-  .project { border-left: 3px solid var(--rule); padding: .1rem 0 .1rem 1rem; margin: 0 0 1.5rem; }
-  .project p { margin: 0 0 .35rem; color: var(--muted); }
-  .project:hover { border-left-color: var(--accent); }
   ul.plain { padding-left: 1.2rem; margin: 0; }
   ul.plain li { margin-bottom: .4rem; }
-  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .95rem; }
-  @media (prefers-reduced-motion: no-preference) {
-    .project { transition: border-color .2s; }
+  .work { display: grid; gap: 1rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
+  .work li {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 1rem 1.1rem;
+    background: var(--chip);
   }
+  .work h3 { margin: 0 0 .25rem; }
+  .work p { margin: 0 0 .5rem; }
+  .work .meta { color: var(--muted); font-size: .95rem; }
+  .work .links { margin: 0; font-size: .95rem; }
+  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .95rem; }
 </style>
 </head>
-
-<script>
-(function () {
-  var el = document.getElementById("last-updated");
-  var user = "andreacortellari";
-  var repo = "andreacortellari.github.io";
-
-  fetch("https://api.github.com/repos/" + user + "/" + repo + "/commits?per_page=1")
-    .then(function (r) {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    })
-    .then(function (commits) {
-      var d = new Date(commits[0].commit.committer.date);
-      el.textContent = d.toLocaleDateString("en-GB", {
-        year: "numeric", month: "long", day: "numeric"
-      });
-      el.setAttribute("datetime", d.toISOString());
-    })
-    .catch(function () {
-      el.parentNode.hidden = true; // hide the line if the lookup fails
-    });
-})();
-</script>
-
 <body>
 <main>
 
@@ -96,14 +74,23 @@
   </header>
 
   <section id="skills">
-    <h2>Data Skills</h2>
+    <h2>Data skills</h2>
     <ul class="plain">
-      <li>Data: [Python, SQL, Excel]</li>
-      <li>Pipelines: [Dataform]</li>
-      <li>Visualization: [Looker, Google DataStudio]</li>
+      <li>Data: Python, SQL, Excel</li>
+      <li>Pipelines: Dataform</li>
+      <li>Visualization: Looker, Google Data Studio</li>
     </ul>
   </section>
-  
+
+  <section id="volunteering">
+    <h2>Volunteer translation</h2>
+    <p>I translate articles on social topics from English into Italian for <a href="https://it.globalvoices.org/author/andrea-cortellari/">Global Voices in Italiano</a>. My latest translations:</p>
+    <ul class="work" id="translations">
+      <li>Loading…</li>
+    </ul>
+    <p><a href="https://it.globalvoices.org/author/andrea-cortellari/">See all my translations</a></p>
+  </section>
+
   <section id="contact">
     <h2>Get in touch</h2>
     <p>If your organization has a data question or needs a multilingual hand, I’d like to hear about it.</p>
@@ -112,7 +99,90 @@
       <a href="https://www.linkedin.com/in/andrea-cortellari/">LinkedIn</a>
     </p>
   </section>
+
+  <footer>Last updated <time id="last-updated">recently</time></footer>
 </main>
-<footer>Last updated <time id="last-updated">recently</time></footer>
+
+<script>
+// Latest translations, read from translations.json (refreshed daily by a GitHub Action)
+(function () {
+  var list = document.getElementById("translations");
+
+  function add(parent, tag, text, cls) {
+    var el = document.createElement(tag);
+    if (cls) el.className = cls;
+    el.textContent = text;
+    parent.appendChild(el);
+    return el;
+  }
+
+  function link(parent, href, text) {
+    var a = document.createElement("a");
+    a.href = href;
+    a.textContent = text;
+    parent.appendChild(a);
+    return a;
+  }
+
+  fetch("translations.json")
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (items) {
+      list.textContent = "";
+      items.forEach(function (it) {
+        var li = document.createElement("li");
+
+        var h = document.createElement("h3");
+        h.lang = "it";
+        link(h, it.link, it.title);
+        li.appendChild(h);
+
+        var meta = "English to Italian";
+        var d = new Date(it.date);
+        if (!isNaN(d)) {
+          meta += " · " + d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+        }
+        if (it.author) meta += " · Original by " + it.author;
+        add(li, "p", meta, "meta");
+
+        if (it.summary) add(li, "p", it.summary).lang = "it";
+
+        if (/^https:\/\//.test(it.original)) {
+          var p = document.createElement("p");
+          p.className = "links";
+          link(p, it.original, "Read the original (English)");
+          li.appendChild(p);
+        }
+
+        list.appendChild(li);
+      });
+    })
+    .catch(function () {
+      list.innerHTML = '<li>My translations are listed on <a href="https://it.globalvoices.org/author/andrea-cortellari/">my Global Voices page</a>.</li>';
+    });
+})();
+</script>
+
+<script>
+// Footer date: last commit that touched index.html
+(function () {
+  var el = document.getElementById("last-updated");
+  var user = "andreacortellari";
+  var repo = "andreacortellari.github.io";
+
+  fetch("https://api.github.com/repos/" + user + "/" + repo + "/commits?path=index.html&per_page=1")
+    .then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then(function (commits) {
+      var d = new Date(commits[0].commit.committer.date);
+      el.textContent = d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+      el.setAttribute("datetime", d.toISOString());
+    })
+    .catch(function () {
+      el.parentNode.hidden = true; // hide the line if the lookup fails
+    });
+})();
+</script>
 </body>
 </html>
