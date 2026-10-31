@@ -35,7 +35,7 @@
     color: var(--text);
     font: 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
-  main { max-width: 44rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
+  main { max-width: 62rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
   h1, h2 { font-family: "Source Serif 4", Georgia, serif; line-height: 1.2; }
   h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: 0 0 1rem; font-weight: 600; }
   h2 { font-size: 1.6rem; margin: 3.5rem 0 1rem; font-weight: 600; }
@@ -46,14 +46,23 @@
   .langs { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 1.5rem 0 0; list-style: none; }
   .langs li { background: var(--chip); padding: .3rem .8rem; border-radius: 999px; font-size: .95rem; }
   .bio {
+    display: flex; gap: 1.5rem; align-items: flex-start;
     background: var(--chip);
     border: 1px solid var(--rule);
     border-radius: 16px;
-    padding: 1.25rem 1.5rem;
+    padding: 1.5rem;
     margin-top: 2rem;
   }
-  .bio p { margin: 0 0 .75rem; max-width: none; }
-  .bio p:last-child { margin-bottom: 0; }
+  .bio-photo {
+    flex: none; width: 8rem; height: 8rem;
+    border-radius: 50%; object-fit: cover;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+  }
+  .bio-body { flex: 1; min-width: 0; }
+  .bio-body p { margin: 0 0 .75rem; max-width: none; }
+  .bio-body p:last-of-type { margin-bottom: 0; }
+  @media (max-width: 36rem) { .bio { flex-direction: column; } }
   .tabs { display: flex; gap: .25rem; border-bottom: 1px solid var(--rule); margin: 2.5rem 0 0; }
   .tab {
     padding: .65rem 1.1rem; margin-bottom: -1px;
@@ -68,13 +77,14 @@
   .bio-links a {
     padding: .35rem .9rem;
     border: 1px solid var(--rule);
-    border-radius: 999px;
+    border-radius: 12px;
     background: var(--bg);
     text-decoration: none;
     font-size: .95rem;
   }
   .bio-links a:hover { border-color: var(--accent); }
-  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .75rem; margin: 0; padding: 0; list-style: none; }
+  .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 0; padding: 0; list-style: none; }
+  @media (max-width: 36rem) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .skill {
     display: flex; align-items: center; gap: .75rem;
     padding: .7rem .85rem;
@@ -90,20 +100,31 @@
     color: var(--accent);
   }
   .skill svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .career { margin: 0; padding: 0; list-style: none; background: var(--chip); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
-  .job { display: flex; gap: 1rem; padding: 1rem 1.25rem; }
-  .job + .job { border-top: 1px solid var(--rule); }
-  .job .icon {
+  .company { background: var(--chip); border: 1px solid var(--rule); border-radius: 16px; padding: 1.1rem 1.25rem; }
+  .company + .company { margin-top: 1rem; }
+  .company-head { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.1rem; }
+  .company-head .icon {
     flex: none; width: 2.75rem; height: 2.75rem;
     display: flex; align-items: center; justify-content: center;
     border-radius: 10px; background: var(--bg); color: var(--accent);
   }
-  .job svg { width: 1.4rem; height: 1.4rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .job h3 { margin: 0; font-size: 1.05rem; }
-  .job p { margin: 0; max-width: none; }
-  .job .org { font-size: .95rem; }
-  .job .when { font-size: .9rem; color: var(--muted); margin-bottom: .4rem; }
-  .job .desc { font-size: .95rem; color: var(--muted); }
+  .company-head svg { width: 1.4rem; height: 1.4rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .company-head h3 { margin: 0; font-size: 1.05rem; }
+  .company-head p { margin: 0; max-width: none; font-size: .9rem; color: var(--muted); }
+  .roles { position: relative; margin: 0; padding: 0 0 0 2.25rem; list-style: none; }
+  .roles::before { content: ""; position: absolute; left: 21px; top: .6rem; bottom: .6rem; width: 2px; background: var(--rule); }
+  .role { position: relative; padding-bottom: 1.25rem; }
+  .role:last-child { padding-bottom: 0; }
+  .role::before {
+    content: ""; position: absolute; left: -1.25rem; top: .4rem;
+    width: .75rem; height: .75rem; box-sizing: border-box; border-radius: 50%;
+    background: var(--chip); border: 2px solid var(--accent); box-shadow: 0 0 0 4px var(--chip);
+  }
+  .role:first-child::before { background: var(--accent); }
+  .role h4 { margin: 0; font-size: 1rem; }
+  .role p { margin: 0; max-width: none; }
+  .role .when { font-size: .9rem; color: var(--muted); margin-bottom: .3rem; }
+  .role .desc { font-size: .95rem; color: var(--muted); }
   .work { display: grid; gap: 1rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
   .work li {
     border: 1px solid var(--rule);
@@ -131,11 +152,15 @@
   </header>
 
   <section id="about" class="bio" aria-label="About me">
-    <!-- Write your bio inside the paragraphs below. Add or remove <p> lines as needed. -->
-    <p></p>
-    <div class="bio-links">
-      <a href="https://github.com/andreacortellari">GitHub</a>
-      <a href="https://www.linkedin.com/in/andrea-cortellari/">LinkedIn</a>
+    <img class="bio-photo" src="https://github.com/andreacortellari.png?size=256" width="128" height="128" alt="Andrea Cortellari">
+    <div class="bio-body">
+      <!-- Write your bio inside the paragraphs below. Add or remove <p> lines as needed. -->
+      <p></p>
+      <div class="bio-links">
+        <a href="https://github.com/andreacortellari">GitHub</a>
+        <a href="https://www.linkedin.com/in/andrea-cortellari/">LinkedIn</a>
+        <a href="#" id="email-link" aria-label="Email Andrea Cortellari" hidden>Email</a>
+      </div>
     </div>
   </section>
 
@@ -159,25 +184,68 @@
 
   <section id="career">
     <h2>Career</h2>
-    <ol class="career">
-      <li class="job">
-        <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
-        <div>
-          <h3>Data Analyst</h3>
-          <p class="org">Springer Nature · Full-time</p>
-          <p class="when">2025 to present · Dordrecht</p>
-          <p class="desc"></p>
-        </div>
-      </li>
-      <li class="job">
+    <div class="company">
+      <div class="company-head">
         <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="12" y1="6" x2="12.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="12" y1="10" x2="12.01" y2="10"/><line x1="16" y1="10" x2="16.01" y2="10"/></svg></span>
         <div>
-          <h3>Reporting and Data Associate</h3>
-          <p class="org">Springer Nature · Full-time</p>
-          <p class="when">2023 to 2025 · Dordrecht</p>
+          <h3>Springer Nature</h3>
+          <p>2023 to present · Dordrecht</p>
         </div>
-      </li>
+      </div>
+      <ol class="roles">
+        <li class="role">
+          <h4>Data Analyst</h4>
+          <p class="when">2025 to present</p>
+          <p class="desc">[One or two sentences on what you do and what you delivered.]</p>
+        </li>
+        <li class="role">
+          <h4>Reporting and Data Associate</h4>
+          <p class="when">2023 to 2025</p>
+          <p class="desc">[One or two sentences on the role and results.]</p>
+        </li>
       </ol>
+    </div>
+
+    <div class="company">
+      <div class="company-head">
+        <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="12" y1="6" x2="12.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="12" y1="10" x2="12.01" y2="10"/><line x1="16" y1="10" x2="16.01" y2="10"/></svg></span>
+        <div>
+          <h3>GeoJunxion</h3>
+          <p>2020 to 2022 · Capelle aan den IJssel</p>
+        </div>
+      </div>
+      <ol class="roles">
+        <li class="role">
+          <h4>Sourcing and Research Specialist</h4>
+          <p class="when">2021 to 2022</p>
+          <p class="desc">[One or two sentences on the role and results.]</p>
+        </li>
+        <li class="role">
+          <h4>Researcher</h4>
+          <p class="when">2020 to 2021</p>
+          <p class="desc">[One or two sentences on the role and results.]</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="company">
+      <div class="company-head">
+        <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+        <div>
+          <h3>Leiden University</h3>
+        </div>
+      </div>
+      <ol class="roles">
+        <li class="role">
+          <h4>MA in Middle Eastern Studies</h4>
+          <p class="when">2018 to 2020</p>
+          <p class="desc">Graduated cum laude. Exchange semester at Sabancı University, Istanbul, 2019 to 2020.</p>
+        </li>
+      </ol>
+    </div>
   </section>
 
   </div>
@@ -285,6 +353,17 @@
   });
 
   select(tabs[0]);
+})();
+</script>
+
+<script>
+// Email link: the address is assembled here, so simple scrapers reading the HTML don't find it
+(function () {
+  var a = document.getElementById("email-link");
+  if (!a) return;
+  var parts = ["andrea.cortellari.vantage593", "passinbox", "com"];
+  a.href = "mailto:" + parts[0] + "@" + parts[1] + "." + parts[2];
+  a.hidden = false;
 })();
 </script>
 
