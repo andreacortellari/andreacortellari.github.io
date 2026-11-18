@@ -16,6 +16,7 @@ share_image: "https://github.com/andreacortellari.png?size=400"
 languages:
   - "Italian (native)"
   - "English (fluent)"
+  - "Turkish (intermediate)"
   - "Dutch (basic)"
   - "Bengali (basic)"
 
@@ -42,7 +43,7 @@ updated_path: "_data"
 # Headings and tab names
 labels:
   tab_work: "At Work"
-  tab_outside: "Outside"
+  tab_outside: "Volunteering"
   skills: "Skills"
   career: "Career"
   education: "Education"
