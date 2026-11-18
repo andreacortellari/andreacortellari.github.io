@@ -24,3 +24,12 @@
     - title: "Researcher"
       period: "2020 to 2021"
       description: "Conducted research with a team involved in international projects for a digital map supplier. Supported data by liaising with state and local authorities to obtain official documents."
+
+- name: "ilGiornale.it"
+  icon: "newspaper"
+  period: "2011 to 2018"
+  location: "Milan"
+  roles:
+    - title: "Senior Staff Writer"
+      period: "2015 to 2018"
+      description: "Joined the web newsroom of a national Italian newspaper as an intern in 2011 and progressed to Senior Staff Writer, working as a breaking-news editor across a wide range of topics. Built expertise on Turkey and West Asia."
