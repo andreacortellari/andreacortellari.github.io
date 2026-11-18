@@ -46,7 +46,7 @@ labels:
   skills: "Skills"
   career: "Career"
   education: "Education"
-  translations: "Translations @ [Global Voices in Italiano](https://it.globalvoices.org/author/andrea-cortellari/)"
+  translations: "Translations @ GlobalVoices"
   last_updated: "Last updated"
 
 # The "Outside" tab (the list itself comes from the feed, see README)
