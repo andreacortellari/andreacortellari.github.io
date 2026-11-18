@@ -5,9 +5,9 @@
 name: "Andrea Cortellari"
 
 # Used for the browser tab and for link previews
-title: "Andrea Cortellari – Data Analyst and translation volunteer"
+title: "Andrea Cortellari - Data Analyst and translation volunteer"
 share_title: "Andrea Cortellari - Data Analyst and translation volunteer"
-description: "Data analyst and translator with some spare time for a pro bono social project."
+description: "Data analyst with a translation volunteering side-gig."
 
 # Profile picture on the page and in link previews
 photo: "https://github.com/andreacortellari.png?size=256"
@@ -17,6 +17,7 @@ languages:
   - "Italian (native)"
   - "English (fluent)"
   - "Dutch (basic)"
+  - "Bengali (basic)"
 
 # One item per paragraph
 bio:
@@ -45,12 +46,12 @@ labels:
   skills: "Skills"
   career: "Career"
   education: "Education"
-  translations: "Volunteer translation"
+  translations: "Translations @ [Global Voices in Italiano](https://it.globalvoices.org/author/andrea-cortellari/)"
   last_updated: "Last updated"
 
 # The "Outside" tab (the list itself comes from the feed, see README)
 translations:
-  intro: "I translate articles on social topics from English into Italian for [Global Voices in Italiano](https://it.globalvoices.org/author/andrea-cortellari/). My latest translations:"
+  intro: ""
   pair: "English to Italian"
   original_label: "Read the original (English)"
   original_by: "Original by"
