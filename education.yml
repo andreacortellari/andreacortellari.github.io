@@ -1,0 +1,8 @@
+# Same format as career.yml. "period" and "location" are optional.
+
+- name: "Leiden University"
+  icon: "school"
+  roles:
+    - title: "MA in Middle Eastern Studies"
+      period: "2018 to 2020"
+      description: "Graduated cum laude. Exchange semester at Sabancı University, Istanbul, 2019 to 2020."

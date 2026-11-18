@@ -1,0 +1,26 @@
+# One block per company, newest first. Roles go inside the company, newest first.
+# "location" is optional. Descriptions can use Markdown.
+
+- name: "Springer Nature"
+  icon: "building"
+  period: "2022 to present"
+  location: "Dordrecht"
+  roles:
+    - title: "Data Analyst"
+      period: "2025 to present"
+      description: "Migrated legacy, manual reporting processes to modern cloud-based data pipelines using BigQuery and Dataform, developing data transformations and observability tests. Established a centralised reporting layer and standardised reporting templates for external stakeholders."
+    - title: "Reporting and Data Associate"
+      period: "2022 to 2025"
+      description: "Consolidated legacy, fragmented data delivery processes into a streamlined, query-driven approach using GBQ, improving data consistency, reducing manual effort and standardising data outputs. Delivered in-house Looker dashboards."
+
+- name: "GeoJunxion"
+  icon: "building"
+  period: "2020 to 2022"
+  location: "Capelle aan den IJssel"
+  roles:
+    - title: "Sourcing and Research Specialist"
+      period: "2021 to 2022"
+      description: "Contributed to and managed a qualitative research effort for a long-term GIS strategic project. Developed and streamlined projects' procedures and guidelines. Acted as liaison for an international client, handling feedback and providing reliable solutions."
+    - title: "Researcher"
+      period: "2020 to 2021"
+      description: "Conducted research with a team involved in international projects for a digital map supplier. Supported data by liaising with state and local authorities to obtain official documents."

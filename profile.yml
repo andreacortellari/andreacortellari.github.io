@@ -1,0 +1,59 @@
+# Your name, bio, links and the small labels used across the page.
+# Edit the text between the quotation marks. Keep the quotation marks.
+# In the bio you can use Markdown, for example [link text](https://example.com) or *emphasis*.
+
+name: "Andrea Cortellari"
+
+# Used for the browser tab and for link previews
+title: "Andrea Cortellari – Data Analyst and translation volunteer"
+share_title: "Andrea Cortellari - Data Analyst and translation volunteer"
+description: "Data analyst and translator with some spare time for a pro bono social project."
+
+# Profile picture on the page and in link previews
+photo: "https://github.com/andreacortellari.png?size=256"
+share_image: "https://github.com/andreacortellari.png?size=400"
+
+languages:
+  - "Italian (native)"
+  - "English (fluent)"
+  - "Dutch (basic)"
+
+# One item per paragraph
+bio:
+  - "Data Analyst with a background in communication and an MA in Middle Eastern Studies. Originally from Italy and based in the Netherlands, I currently focus on improving data delivery and reporting processes, turning legacy workflows into streamlined, cloud-based solutions."
+
+links:
+  - label: "GitHub"
+    url: "https://github.com/andreacortellari"
+  - label: "LinkedIn"
+    url: "https://www.linkedin.com/in/andrea-cortellari/"
+
+# The email address is kept in three parts (before the @, domain, ending),
+# so it is not written out in full in the page source.
+email: ["andrea.cortellari.vantage593", "passinbox", "com"]
+
+# Used for the "Last updated" date in the footer: the date of the latest change
+# inside the folder named in updated_path (the daily feed update is not counted).
+github_user: "andreacortellari"
+repo: "andreacortellari.github.io"
+updated_path: "_data"
+
+# Headings and tab names
+labels:
+  tab_work: "At Work"
+  tab_outside: "Outside"
+  skills: "Skills"
+  career: "Career"
+  education: "Education"
+  translations: "Volunteer translation"
+  last_updated: "Last updated"
+
+# The "Outside" tab (the list itself comes from the feed, see README)
+translations:
+  intro: "I translate articles on social topics from English into Italian for [Global Voices in Italiano](https://it.globalvoices.org/author/andrea-cortellari/). My latest translations:"
+  pair: "English to Italian"
+  original_label: "Read the original (English)"
+  original_by: "Original by"
+  all_label: "See all my translations"
+  all_url: "https://it.globalvoices.org/author/andrea-cortellari/"
+  fallback: "My translations are listed on my Global Voices page."

@@ -1,0 +1,16 @@
+# One skill per entry. Icons available: code, database, table, git-branch,
+# chart-bar, chart-pie, globe, briefcase. (More can be added in _includes/icon.html)
+# The page shows skills three per row.
+
+- name: "Python"
+  icon: "code"
+- name: "SQL"
+  icon: "database"
+- name: "Excel"
+  icon: "table"
+- name: "Dataform"
+  icon: "git-branch"
+- name: "Looker"
+  icon: "chart-bar"
+- name: "Google Data Studio"
+  icon: "chart-pie"
