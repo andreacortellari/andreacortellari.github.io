@@ -1,0 +1,9 @@
+# Site settings. You rarely need to change this file.
+title: "Andrea Cortellari"
+url: "https://andreacortellari.github.io"
+baseurl: ""
+
+# Files and folders that should not be published as part of the site
+exclude:
+  - scripts
+  - README.md

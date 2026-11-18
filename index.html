@@ -1,407 +1,105 @@
+---
+---
+{%- assign p = site.data.profile -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Andrea Cortellari – Data Analyst and translation volunteer</title>
-<meta name="description" content="Data analyst and translator with some spare time for a pro bono social project.">
-<link rel="canonical" href="https://andreacortellari.github.io/">
+<title>{{ p.title }}</title>
+<meta name="description" content="{{ p.description | escape }}">
+<link rel="canonical" href="{{ site.url }}/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b6b78'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' font-weight='bold' text-anchor='middle' fill='white'%3EAC%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://andreacortellari.github.io/">
-<meta property="og:title" content="Andrea Cortellari - Data Analyst and translation volunteer">
-<meta property="og:description" content="Data analyst and translator with some spare time for a pro bono social project.">
-<meta property="og:image" content="https://github.com/andreacortellari.png?size=400">
-<meta property="og:image:alt" content="Andrea Cortellari">
+<meta property="og:url" content="{{ site.url }}/">
+<meta property="og:title" content="{{ p.share_title | escape }}">
+<meta property="og:description" content="{{ p.description | escape }}">
+<meta property="og:image" content="{{ p.share_image }}">
+<meta property="og:image:alt" content="{{ p.name | escape }}">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Andrea Cortellari - Data Analyst and translation volunteer">
-<meta name="twitter:description" content="Data analyst and translator with some spare time for a pro bono social project.">
-<meta name="twitter:image" content="https://github.com/andreacortellari.png?size=400">
+<meta name="twitter:title" content="{{ p.share_title | escape }}">
+<meta name="twitter:description" content="{{ p.description | escape }}">
+<meta name="twitter:image" content="{{ p.share_image }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #f6f8fa;
-    --text: #1b2733;
-    --muted: #55636f;
-    --accent: #0b6b78;
-    --rule: #cfd8de;
-    --chip: #e3eef0;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #101820;
-      --text: #e6edf2;
-      --muted: #9fb0bc;
-      --accent: #5cc4cf;
-      --rule: #2b3a46;
-      --chip: #1b2a33;
-    }
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  }
-  main { max-width: 62rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
-  h1, h2 { font-family: "Source Serif 4", Georgia, serif; line-height: 1.2; }
-  h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: 0 0 1rem; font-weight: 600; }
-  h2 { font-size: 1.6rem; margin: 3.5rem 0 1rem; font-weight: 600; }
-  h3 { font-size: 1.05rem; margin: 0 0 .25rem; }
-  p { margin: 0 0 1rem; max-width: 38rem; }
-  a { color: var(--accent); text-underline-offset: 3px; }
-  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-  .langs { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 1.5rem 0 0; list-style: none; }
-  .langs li { background: var(--chip); padding: .3rem .8rem; border-radius: 999px; font-size: .95rem; }
-  .bio {
-    display: flex; gap: 1.5rem; align-items: flex-start;
-    background: var(--chip);
-    border: 1px solid var(--rule);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-top: 2rem;
-  }
-  .bio-photo {
-    flex: none; width: 8rem; height: 8rem;
-    border-radius: 50%; object-fit: cover;
-    border: 1px solid var(--rule);
-    background: var(--bg);
-  }
-  .bio-body { flex: 1; min-width: 0; }
-  .bio-body p { margin: 0 0 .75rem; max-width: none; }
-  .bio-body p:last-of-type { margin-bottom: 0; }
-  @media (max-width: 36rem) { .bio { flex-direction: column; } }
-  .tabs { display: flex; gap: .25rem; border-bottom: 1px solid var(--rule); margin: 2.5rem 0 0; }
-  .tab {
-    padding: .65rem 1.1rem; margin-bottom: -1px;
-    background: none; border: 0; border-bottom: 3px solid transparent;
-    color: var(--muted); font: inherit; cursor: pointer;
-  }
-  .tab:hover { color: var(--text); }
-  .tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
-  .tab:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; border-radius: 4px; }
-  [role="tabpanel"] h2 { margin-top: 2rem; }
-  #panel-outside p { max-width: none; }
-  .bio-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
-  .bio-links a {
-    padding: .35rem .9rem;
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    background: var(--bg);
-    text-decoration: none;
-    font-size: .95rem;
-  }
-  .bio-links a:hover { border-color: var(--accent); }
-  .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin: 0; padding: 0; list-style: none; }
-  @media (max-width: 36rem) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  .skill {
-    display: flex; align-items: center; gap: .75rem;
-    padding: .7rem .85rem;
-    background: var(--chip);
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-  }
-  .skill .icon {
-    flex: none; width: 2.25rem; height: 2.25rem;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 10px;
-    background: var(--bg);
-    color: var(--accent);
-  }
-  .skill svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .company { background: var(--chip); border: 1px solid var(--rule); border-radius: 16px; padding: 1.1rem 1.25rem; }
-  .company + .company { margin-top: 1rem; }
-  .company-head { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.1rem; }
-  .company-head .icon {
-    flex: none; width: 2.75rem; height: 2.75rem;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 10px; background: var(--bg); color: var(--accent);
-  }
-  .company-head svg { width: 1.4rem; height: 1.4rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .company-head h3 { margin: 0; font-size: 1.05rem; }
-  .company-head p { margin: 0; max-width: none; font-size: .9rem; color: var(--muted); }
-  .roles { position: relative; margin: 0; padding: 0 0 0 2.25rem; list-style: none; }
-  .roles::before { content: ""; position: absolute; left: 21px; top: .6rem; bottom: .6rem; width: 2px; background: var(--rule); }
-  .role { position: relative; padding-bottom: 1.25rem; }
-  .role:last-child { padding-bottom: 0; }
-  .role::before {
-    content: ""; position: absolute; left: -1.25rem; top: .4rem;
-    width: .75rem; height: .75rem; box-sizing: border-box; border-radius: 50%;
-    background: var(--chip); border: 2px solid var(--accent); box-shadow: 0 0 0 4px var(--chip);
-  }
-  .role:first-child::before { background: var(--accent); }
-  .role h4 { margin: 0; font-size: 1rem; }
-  .role p { margin: 0; max-width: none; }
-  .role .when { font-size: .9rem; color: var(--muted); margin-bottom: .3rem; }
-  .role .desc { font-size: .95rem; color: var(--muted); }
-  .work { display: grid; gap: 1rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
-  .work li {
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 1rem 1.1rem;
-    background: var(--chip);
-  }
-  .work h3 { margin: 0 0 .25rem; }
-  .work p { margin: 0 0 .5rem; }
-  .work .meta { color: var(--muted); font-size: .95rem; }
-  .work .links { margin: 0; font-size: .95rem; }
-  footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .95rem; }
-</style>
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
 <main>
 
   <header>
-    <h1>Andrea Cortellari</h1>
+    <h1>{{ p.name }}</h1>
     <ul class="langs" aria-label="Languages">
-      <li>Italian (native)</li>
-      <li>English (fluent)</li>
-      <li>Dutch (basic)</li>
+      {%- for language in p.languages %}
+      <li>{{ language }}</li>
+      {%- endfor %}
     </ul>
   </header>
 
   <section id="about" class="bio" aria-label="About me">
-    <img class="bio-photo" src="https://github.com/andreacortellari.png?size=256" width="128" height="128" alt="Andrea Cortellari">
+    <img class="bio-photo" src="{{ p.photo }}" width="128" height="128" alt="{{ p.name | escape }}">
     <div class="bio-body">
-      <!-- Write your bio inside the paragraphs below. Add or remove <p> lines as needed. -->
-      <p>Data Analyst with a background in communication and an MA in Middle Eastern Studies. Originally from Italy and based in the Netherlands, I currently focus on improving data delivery and reporting processes, turning legacy workflows into streamlined, cloud-based solutions.</p>
+      {%- for paragraph in p.bio %}
+      {{ paragraph | markdownify }}
+      {%- endfor %}
       <div class="bio-links">
-        <a href="https://github.com/andreacortellari">GitHub</a>
-        <a href="https://www.linkedin.com/in/andrea-cortellari/">LinkedIn</a>
-        <a href="#" id="email-link" aria-label="Email Andrea Cortellari" hidden>Email</a>
+        {%- for link in p.links %}
+        <a href="{{ link.url }}">{{ link.label }}</a>
+        {%- endfor %}
+        <a href="#" id="email-link" aria-label="Email {{ p.name | escape }}" data-parts="{{ p.email | join: '|' }}" hidden>Email</a>
       </div>
     </div>
   </section>
 
   <div class="tabs" role="tablist" aria-label="Sections">
-    <button class="tab" role="tab" id="tab-work" aria-controls="panel-work" aria-selected="true">At Work</button>
-    <button class="tab" role="tab" id="tab-outside" aria-controls="panel-outside" aria-selected="false">Outside</button>
+    <button class="tab" role="tab" id="tab-work" aria-controls="panel-work" aria-selected="true">{{ p.labels.tab_work }}</button>
+    <button class="tab" role="tab" id="tab-outside" aria-controls="panel-outside" aria-selected="false">{{ p.labels.tab_outside }}</button>
   </div>
 
   <div role="tabpanel" id="panel-work" aria-labelledby="tab-work">
   <section id="skills">
-    <h2>Skills</h2>
+    <h2>{{ p.labels.skills }}</h2>
     <ul class="skills">
-      <li class="skill"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>Python</li>
-      <li class="skill"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></span>SQL</li>
-      <li class="skill"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span>Excel</li>
-      <li class="skill"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></span>Dataform</li>
-      <li class="skill"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="20" x2="6" y2="14"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="4"/></svg></span>Looker</li>
-      <li class="skill"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></span>Google Data Studio</li>
+      {%- for skill in site.data.skills %}
+      <li class="skill"><span class="icon">{% include icon.html name=skill.icon %}</span>{{ skill.name }}</li>
+      {%- endfor %}
     </ul>
   </section>
 
   <section id="career">
-    <h2>Career</h2>
-    <div class="company">
-      <div class="company-head">
-        <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="12" y1="6" x2="12.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="12" y1="10" x2="12.01" y2="10"/><line x1="16" y1="10" x2="16.01" y2="10"/></svg></span>
-        <div>
-          <h3>Springer Nature</h3>
-          <p>2022 to present · Dordrecht</p>
-        </div>
-      </div>
-      <ol class="roles">
-        <li class="role">
-          <h4>Data Analyst</h4>
-          <p class="when">2025 to present</p>
-          <p class="desc">Migrated legacy, manual reporting processes to modern cloud-based data pipelines using BigQuery and Dataform, developing data transformations and observability tests. Established a centralised reporting layer and standardised reporting templates for external stakeholders.</p>
-        </li>
-        <li class="role">
-          <h4>Reporting and Data Associate</h4>
-          <p class="when">2022 to 2025</p>
-          <p class="desc">Consolidated legacy, fragmented data delivery processes into a streamlined, query-driven approach using GBQ, improving data consistency, reducing manual effort and standardising data outputs. Delivered in-house Looker dashboards.</p>
-        </li>
-      </ol>
-    </div>
-
-    <div class="company">
-      <div class="company-head">
-        <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="12" y1="6" x2="12.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="12" y1="10" x2="12.01" y2="10"/><line x1="16" y1="10" x2="16.01" y2="10"/></svg></span>
-        <div>
-          <h3>GeoJunxion</h3>
-          <p>2020 to 2022 · Capelle aan den IJssel</p>
-        </div>
-      </div>
-      <ol class="roles">
-        <li class="role">
-          <h4>Sourcing and Research Specialist</h4>
-          <p class="when">2021 to 2022</p>
-          <p class="desc">Contributed to and managed a qualitative research effort for a long-term GIS strategic project. Developed and streamlined projects' procedures and guidelines. Acted as liaison for an international client, handling feedback and providing reliable solutions.
-</p>
-        </li>
-        <li class="role">
-          <h4>Researcher</h4>
-          <p class="when">2020 to 2021</p>
-          <p class="desc">Conducted research with a team involved in international projects for a digital map supplier. Supported data by liaising with state and local authorities to obtain official documents.</p>
-        </li>
-      </ol>
-    </div>
+    <h2>{{ p.labels.career }}</h2>
+    {%- include timeline.html items=site.data.career %}
   </section>
 
   <section id="education">
-    <h2>Education</h2>
-    <div class="company">
-      <div class="company-head">
-        <span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
-        <div>
-          <h3>Leiden University</h3>
-        </div>
-      </div>
-      <ol class="roles">
-        <li class="role">
-          <h4>MA in Middle Eastern Studies</h4>
-          <p class="when">2018 to 2020</p>
-          <p class="desc">Graduated cum laude. Exchange semester at Sabancı University, Istanbul, 2019 to 2020.</p>
-        </li>
-      </ol>
-    </div>
+    <h2>{{ p.labels.education }}</h2>
+    {%- include timeline.html items=site.data.education %}
   </section>
 
   </div>
 
   <div role="tabpanel" id="panel-outside" aria-labelledby="tab-outside">
   <section id="volunteering">
-    <h2>Volunteer translation</h2>
-    <p>I translate articles on social topics from English into Italian for <a href="https://it.globalvoices.org/author/andrea-cortellari/">Global Voices in Italiano</a>. My latest translations:</p>
-    <ul class="work" id="translations">
+    <h2>{{ p.labels.translations }}</h2>
+    {{ p.translations.intro | markdownify }}
+    <ul class="work" id="translations"
+        data-src="{{ '/translations.json' | relative_url }}"
+        data-pair="{{ p.translations.pair | escape }}"
+        data-original-label="{{ p.translations.original_label | escape }}"
+        data-original-by="{{ p.translations.original_by | escape }}"
+        data-all-url="{{ p.translations.all_url }}"
+        data-fallback="{{ p.translations.fallback | escape }}">
       <li>Loading…</li>
     </ul>
-    <p><a href="https://it.globalvoices.org/author/andrea-cortellari/">See all my translations</a></p>
+    <p><a href="{{ p.translations.all_url }}">{{ p.translations.all_label }}</a></p>
   </section>
 
   </div>
 
-  <footer>Last updated <time id="last-updated">recently</time></footer>
+  <footer>{{ p.labels.last_updated }} <time id="last-updated" data-user="{{ p.github_user }}" data-repo="{{ p.repo }}" data-path="{{ p.updated_path }}">recently</time></footer>
 </main>
 
-<script>
-// Latest translations, read from translations.json (refreshed daily by a GitHub Action)
-(function () {
-  var list = document.getElementById("translations");
-
-  function add(parent, tag, text, cls) {
-    var el = document.createElement(tag);
-    if (cls) el.className = cls;
-    el.textContent = text;
-    parent.appendChild(el);
-    return el;
-  }
-
-  function link(parent, href, text) {
-    var a = document.createElement("a");
-    a.href = href;
-    a.textContent = text;
-    parent.appendChild(a);
-    return a;
-  }
-
-  fetch("translations.json")
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function (items) {
-      list.textContent = "";
-      items.forEach(function (it) {
-        var li = document.createElement("li");
-
-        var h = document.createElement("h3");
-        h.lang = "it";
-        link(h, it.link, it.title);
-        li.appendChild(h);
-
-        var meta = "English to Italian";
-        var d = new Date(it.date);
-        if (!isNaN(d)) {
-          meta += " · " + d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
-        }
-        if (it.author) meta += " · Original by " + it.author;
-        add(li, "p", meta, "meta");
-
-        if (it.summary) add(li, "p", it.summary).lang = "it";
-
-        if (/^https:\/\//.test(it.original)) {
-          var p = document.createElement("p");
-          p.className = "links";
-          link(p, it.original, "Read the original (English)");
-          li.appendChild(p);
-        }
-
-        list.appendChild(li);
-      });
-    })
-    .catch(function () {
-      list.innerHTML = '<li>My translations are listed on <a href="https://it.globalvoices.org/author/andrea-cortellari/">my Global Voices page</a>.</li>';
-    });
-})();
-</script>
-
-<script>
-// Tabs: At Work / Outside
-(function () {
-  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tabs .tab"));
-  if (!tabs.length) return;
-
-  function select(tab, focus) {
-    tabs.forEach(function (t) {
-      var on = t === tab;
-      t.setAttribute("aria-selected", on);
-      t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
-    });
-    if (focus) tab.focus();
-  }
-
-  tabs.forEach(function (t, i) {
-    t.addEventListener("click", function () { select(t); });
-    t.addEventListener("keydown", function (e) {
-      var next = null;
-      if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
-      if (e.key === "ArrowLeft") next = tabs[(i - 1 + tabs.length) % tabs.length];
-      if (e.key === "Home") next = tabs[0];
-      if (e.key === "End") next = tabs[tabs.length - 1];
-      if (next) { e.preventDefault(); select(next, true); }
-    });
-  });
-
-  select(tabs[0]);
-})();
-</script>
-
-<script>
-// Email link: the address is assembled here, so simple scrapers reading the HTML don't find it
-(function () {
-  var a = document.getElementById("email-link");
-  if (!a) return;
-  var parts = ["andrea.cortellari.vantage593", "passinbox", "com"];
-  a.href = "mailto:" + parts[0] + "@" + parts[1] + "." + parts[2];
-  a.hidden = false;
-})();
-</script>
-
-<script>
-// Footer date: last commit that touched index.html
-(function () {
-  var el = document.getElementById("last-updated");
-  var user = "andreacortellari";
-  var repo = "andreacortellari.github.io";
-
-  fetch("https://api.github.com/repos/" + user + "/" + repo + "/commits?path=index.html&per_page=1")
-    .then(function (r) {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    })
-    .then(function (commits) {
-      var d = new Date(commits[0].commit.committer.date);
-      el.textContent = d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
-      el.setAttribute("datetime", d.toISOString());
-    })
-    .catch(function () {
-      el.parentNode.hidden = true; // hide the line if the lookup fails
-    });
-})();
-</script>
+<script src="{{ '/assets/main.js' | relative_url }}"></script>
 </body>
 </html>
