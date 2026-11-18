@@ -6,8 +6,8 @@ name: "Andrea Cortellari"
 
 # Used for the browser tab and for link previews
 title: "Andrea Cortellari - Data Analyst and translation volunteer"
-share_title: "Andrea Cortellari - Data Analyst and translation volunteer"
-description: "Data analyst with a translation volunteering side-gig."
+share_title: "Andrea Cortellari - Data analyst and volunteer translator"
+description: "Data analyst and volunteer translator based in The Netherlands."
 
 # Profile picture on the page and in link previews
 photo: "https://github.com/andreacortellari.png?size=256"
@@ -44,10 +44,10 @@ updated_path: "_data"
 labels:
   tab_work: "At Work"
   tab_outside: "Volunteering"
-  skills: "Data Skills"
+  skills: "Data skills"
   career: "Career"
   education: "Education"
-  translations: "Translations @ GlobalVoices"
+  translations: "Translating for Global Voices"
   last_updated: "Last updated"
 
 # The "Outside" tab (the list itself comes from the feed, see README)
