@@ -8,6 +8,8 @@
   icon: "database"
 - name: "Excel"
   icon: "table"
+- name: "BigQuery"
+  icon: "cloud"  
 - name: "Dataform"
   icon: "git-branch"
 - name: "Looker"
