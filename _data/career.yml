@@ -8,10 +8,10 @@
   roles:
     - title: "Data Analyst"
       period: "2025 to present"
-      description: "Migrated legacy, manual reporting processes to modern cloud-based data pipelines using BigQuery and Dataform, developing data transformations and observability tests. Established a centralised reporting layer and standardised reporting templates for external stakeholders."
+      description: "Migrated legacy reporting processes to modern cloud-based data pipelines using BigQuery and Dataform, developing data transformations and observability tests."
     - title: "Reporting and Data Associate"
       period: "2022 to 2025"
-      description: "Consolidated legacy, fragmented data delivery processes into a streamlined, query-driven approach using GBQ, improving data consistency, reducing manual effort and standardising data outputs. Delivered in-house Looker dashboards."
+      description: "Consolidated legacy data delivery processes into a streamlined, query-driven approach using GBQ. Improved data consistency and reduced manual effort. Delivered in-house Looker dashboards."
 
 - name: "GeoJunxion"
   icon: "building"
