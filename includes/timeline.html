@@ -1,0 +1,24 @@
+{%- for item in include.items %}
+    <div class="company">
+      <div class="company-head">
+        <span class="icon">{% include icon.html name=item.icon %}</span>
+        <div>
+          <h3>{{ item.name }}</h3>
+          {%- if item.period or item.location %}
+          <p>{{ item.period }}{% if item.period and item.location %} · {% endif %}{{ item.location }}</p>
+          {%- endif %}
+        </div>
+      </div>
+      <ol class="roles">
+        {%- for role in item.roles %}
+        <li class="role">
+          <h4>{{ role.title }}</h4>
+          <p class="when">{{ role.period }}</p>
+          {%- if role.description %}
+          {{ role.description | markdownify | replace: '<p>', '<p class="desc">' }}
+          {%- endif %}
+        </li>
+        {%- endfor %}
+      </ol>
+    </div>
+{%- endfor %}
