@@ -11,7 +11,7 @@
   icon: "git-branch"
 - name: "DBT"
   icon: "git-branch"
-  url: "https://github.com/andreacortellari/your-dbt-repo"
+  url: "https://credentials.getdbt.com/8d6cb7b9-0f36-4c16-ad85-27baaef0683d"
 - name: "BigQuery"
   icon: "cloud"
 
