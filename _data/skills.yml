@@ -12,6 +12,8 @@
   icon: "cloud"  
 - name: "Dataform"
   icon: "git-branch"
+- name: "DBT"
+  icon: "git-branch"
 - name: "Looker"
   icon: "chart-bar"
 - name: "Google Data Studio"
