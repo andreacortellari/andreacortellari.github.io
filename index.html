@@ -62,8 +62,7 @@
     <h2>{{ p.labels.skills }}</h2>
     <ul class="skills">
       {%- for skill in site.data.skills %}
-      <li class="skill"><span class="icon">{% include icon.html name=skill.icon %}</span>{{ skill.name }}</li>
-      {%- endfor %}
+<li class="skill"><span class="icon">{% include icon.html name=skill.icon %}</span>{% if skill.url %}<a href="{{ skill.url }}">{{ skill.name }}</a>{% else %}{{ skill.name }}{% endif %}</li>      {%- endfor %}
     </ul>
   </section>
 
