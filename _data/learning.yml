@@ -1,0 +1,17 @@
+- title: "dbt Fundamentals"
+  provider: "dbt Labs"
+  status: "Completed"
+  credential_url:
+  current: true
+  url: "https://github.com/andreacortellari/your-dbt-repo"
+  note: "Practice project on GitHub"
+
+- title: "Level Up: Advanced SQL"
+  provider: "LinkedIn Learning"
+  status: "Completed Nov 2025"
+  credential_url:
+
+- title: "Learning BigQuery"
+  provider: "LinkedIn Learning"
+  status: "Completed Oct 2024"
+  credential_url:
