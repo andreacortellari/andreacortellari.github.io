@@ -2,7 +2,7 @@ name: Update translations
 
 on:
   schedule:
-    - cron: "0 6 * * *"   # daily at 06:00 UTC
+    - cron: "0 4 * * SUN"
   workflow_dispatch:       # lets you run it manually from the Actions tab
 
 permissions:
