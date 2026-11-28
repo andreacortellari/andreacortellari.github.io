@@ -54,6 +54,7 @@
 
   <div class="tabs" role="tablist" aria-label="Sections">
     <button class="tab" role="tab" id="tab-work" aria-controls="panel-work" aria-selected="true">{{ p.labels.tab_work }}</button>
+    <button class="tab" role="tab" id="tab-learning" aria-controls="panel-learning" aria-selected="false">{{ p.labels.tab_learning }}</button>
     <button class="tab" role="tab" id="tab-outside" aria-controls="panel-outside" aria-selected="false">{{ p.labels.tab_outside }}</button>
   </div>
 
@@ -78,6 +79,27 @@
 
   </div>
 
+    <div role="tabpanel" id="panel-learning" aria-labelledby="tab-learning">
+  <section id="learning">
+    <h2>{{ p.labels.learning }}</h2>
+    <ul class="courses">
+      {%- for course in site.data.learning %}
+      <li class="course">
+        <span class="icon">{% include icon.html name="book" %}</span>
+        <div>
+          <h3>{% if course.url %}<a href="{{ course.url }}">{{ course.title }}</a>{% else %}{{ course.title }}{% endif %}</h3>
+          <p class="provider">{{ course.provider }}</p>
+          <span class="status{% if course.current %} current{% endif %}">{{ course.status }}</span>
+          {%- if course.note %}
+          <p class="note">{{ course.note }}</p>
+          {%- endif %}
+        </div>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  </div>
+  
   <div role="tabpanel" id="panel-outside" aria-labelledby="tab-outside">
   <section id="volunteering">
     <h2>{{ p.labels.translations }}</h2>
