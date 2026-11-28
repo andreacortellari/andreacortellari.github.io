@@ -49,6 +49,8 @@ labels:
   education: "Education"
   translations: "Translating for Global Voices"
   last_updated: "Last updated"
+  tab_learning: "Learning"
+  learning: "Courses"
 
 # The "Outside" tab (the list itself comes from the feed, see README)
 translations:
